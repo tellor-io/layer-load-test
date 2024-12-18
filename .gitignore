@@ -1,0 +1,5 @@
+.env
+genesis_balance.json
+mnemonics.txt
+stats.csv
+/build

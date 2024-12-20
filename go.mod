@@ -3,9 +3,12 @@ module github.com/tellor-io/layer-load-test
 go 1.23.4
 
 require (
+	cosmossdk.io/math v1.4.0
+	github.com/cometbft/cometbft v0.38.15
 	github.com/cometbft/cometbft-load-test v0.2.0
 	github.com/cosmos/cosmos-sdk v0.50.9
 	github.com/joho/godotenv v1.5.1
+	github.com/spf13/cobra v1.8.1
 	github.com/tellor-io/layer v1.6.1
 	golang.org/x/exp v0.0.0-20240506185415-9bf2ced13842
 )
@@ -17,7 +20,6 @@ require (
 	cosmossdk.io/depinject v1.0.0 // indirect
 	cosmossdk.io/errors v1.0.1 // indirect
 	cosmossdk.io/log v1.4.1 // indirect
-	cosmossdk.io/math v1.4.0 // indirect
 	cosmossdk.io/store v1.1.1 // indirect
 	cosmossdk.io/x/tx v0.13.5 // indirect
 	filippo.io/edwards25519 v1.0.0 // indirect
@@ -38,7 +40,6 @@ require (
 	github.com/cockroachdb/pebble v1.1.1 // indirect
 	github.com/cockroachdb/redact v1.1.5 // indirect
 	github.com/cockroachdb/tokenbucket v0.0.0-20230807174530-cc333fc44b06 // indirect
-	github.com/cometbft/cometbft v0.38.15 // indirect
 	github.com/cometbft/cometbft-db v0.14.1 // indirect
 	github.com/cosmos/btcutil v1.0.5 // indirect
 	github.com/cosmos/cosmos-db v1.0.2 // indirect
@@ -134,7 +135,6 @@ require (
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spf13/afero v1.11.0 // indirect
 	github.com/spf13/cast v1.6.0 // indirect
-	github.com/spf13/cobra v1.8.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/spf13/viper v1.19.0 // indirect
 	github.com/stretchr/testify v1.9.0 // indirect

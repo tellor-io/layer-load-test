@@ -11,13 +11,12 @@ while getopts "n:m:g:j:" opt; do
   case $opt in
     n) NB_ACCOUNTS=$OPTARG ;;
     m) MNEMONICS_OUTPUT=$OPTARG ;;
-    g) GENESIS_OUTPUT=$OPTARG ;;
     j) EXISTING_JSON=$OPTARG ;;
     *) usage ;;
   esac
 done
 
-if [[ -z "$NB_ACCOUNTS" || -z "$MNEMONICS_OUTPUT" || -z "$GENESIS_OUTPUT" || -z "$EXISTING_JSON" ]]; then
+if [[ -z "$NB_ACCOUNTS" || -z "$MNEMONICS_OUTPUT" ]]; then
   usage
 fi
 
@@ -29,6 +28,8 @@ fi
 WORKDIR=$(mktemp -d)
 MNEMONICS_FILE="${WORKDIR}/mnemonics.txt"
 COUNTER=1
+
+EXISTING_JSON="./chains/layer.json"
 
 trap 'rm -rf -- "$WORKDIR"' EXIT
 
@@ -62,25 +63,6 @@ done
 jq --argjson accounts "$ACCOUNTS_JSON" '.chains[0].genesis.accounts = $accounts' "$EXISTING_JSON" > "$EXISTING_JSON.tmp" \
   && mv "$EXISTING_JSON.tmp" "$EXISTING_JSON"
 
-# Generate Genesis File
-for address in "${ACCOUNTS[@]}"; do
-  jq -n \
-    --arg addr "$address" \
-    '{
-      "balances": [
-        {
-          "address": $addr,
-          "coins": [
-            {
-              "denom": "loya",
-              "amount": "10000000"
-            }
-          ]
-        }
-      ]
-    }'
-done | jq -s 'flatten' > "$GENESIS_OUTPUT"
 
 echo "Updated JSON file: $EXISTING_JSON"
-echo "Genesis file saved to: $GENESIS_OUTPUT"
 echo "Mnemonics saved to: $MNEMONICS_OUTPUT"

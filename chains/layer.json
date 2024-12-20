@@ -1,0 +1,226 @@
+{
+  "chains": [
+    {
+      "name": "layer",
+      "chain_id": "layer-1",
+      "denom": "loya",
+      "binary": "layerd",
+      "bech32_prefix": "tellor",
+      "docker_image": {
+        "repository": "layer",
+        "version": "local",
+        "uid-gid": "1025:1025"
+      },
+      "gas_prices": "0%DENOM%",
+      "coin_type": 118,
+      "trusting_period": "112h",
+      "gas_adjustment": 2.0,
+      "number_vals": 1,
+      "number_node": 0,
+      "block_time": "5000ms",
+      "host_port_override": {
+        "26657": "26657",
+        "1317": "1317",
+        "9090": "9090"
+      },
+      "additional_start_args": [
+        "--keyring-backend",
+        "test",
+        "--key-name",
+        "validator",
+        "--price-daemon-enabled=false"
+      ],
+      "config_file_overrides": [
+        {
+          "file": "config/config.toml",
+          "paths": {
+            "moniker": "localic",
+            "rpc.cors_allowed_origins": [
+              "*"
+            ]
+          }
+        }
+      ],
+      "genesis": {
+        "modify": [
+          {
+            "key": "app_state.gov.params.voting_period",
+            "value": "15s"
+          },
+          {
+            "key": "app_state.gov.params.max_deposit_period",
+            "value": "15s"
+          },
+          {
+            "key": "app_state.gov.params.min_deposit.0.denom",
+            "value": "loya"
+          },
+          {
+            "key": "app_state.gov.params.min_deposit.0.amount",
+            "value": "1"
+          },
+          {
+            "key": "consensus.params.abci.vote_extensions_enable_height",
+            "value": "1"
+          }
+        ],
+        "startup_commands": [
+          "ls %HOME%",
+          "%BIN% keys add example-key-after --keyring-backend test --home %HOME%"
+        ],
+        "accounts": [
+          {
+            "name": "user1",
+            "address": "tellor1pha73trhgc26c2a5ltxtx8mx4y2tlqxjdvh9qv",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "awesome near blue cattle maze weird raccoon that grass music online biology arrow cheese always sunny field blush more know connect bar stand friend"
+          },
+          {
+            "name": "user2",
+            "address": "tellor1jtrceade7zxdqgzmeqgmmp3xdsv7axyqtle42j",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "outdoor blur useless thought promote bleak vapor hero soap spin tribe ritual skull wave scheme panel mobile awake brand gold few access fix muscle"
+          },
+          {
+            "name": "user3",
+            "address": "tellor1sw7tv2gqh2xnyqll87pu7l2z5mdf5xguq6hq6c",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "jelly warrior blush guilt tonight current admit any walk electric mammal drastic lounge athlete category pilot adjust negative cabin dragon dice verb gloom subject"
+          },
+          {
+            "name": "user4",
+            "address": "tellor1gkkfxkgh6w85esd43juvqygysq0x2av9v9ydec",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "accuse forum uniform target lecture glue void rebuild evoke issue gate region rule clinic patrol refuse cabbage civil online stuff caution quantum license aisle"
+          },
+          {
+            "name": "user5",
+            "address": "tellor1zrn83075cwsks3e76ndsuz5jh6tvft46k0n7dn",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "myth wish renew post father donate dumb coral wedding marriage bracket priority great document dose organ whale polar grass duty vintage force chuckle drum"
+          },
+          {
+            "name": "user6",
+            "address": "tellor1tp3ld8jpvnaxu0tp79m849u5696xgpw6dsshxg",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "village boil uncover impose similar eternal category abstract force march owner demise champion inform kiwi radio fox tenant tone finger few scale over soap"
+          },
+          {
+            "name": "user7",
+            "address": "tellor1qdcvhp7jyg0er4y6q9rs5ezesg43275cwvhmr7",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "room try bargain faith smooth stomach dilemma medal illegal donate tube hybrid just resource correct apart image erode bubble spatial abstract since choose produce"
+          },
+          {
+            "name": "user8",
+            "address": "tellor1hmhzu66jwx475jv69qpz3lfdmhmxgdyxsz3kns",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "option wrap faculty tuition wide inherit dirt marriage vanish tattoo split supply erosion someone between grape pilot twelve enemy cube problem shoulder spawn involve"
+          },
+          {
+            "name": "user9",
+            "address": "tellor1eudt436x39t40y2er5nzy9qzncsurdgmtm3hg8",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "fence cross never vacant biology govern chuckle become field salad pupil stumble alter world guilt horror engine airport ocean innocent clay echo company outdoor"
+          },
+          {
+            "name": "user10",
+            "address": "tellor1payuqvplz2ls5rlnn46yj328x4xynz7s9rwuf6",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "grunt turn universe explain metal plunge hire city grit rare crew matter betray skill defy steel license into fury manual recall jump setup oxygen"
+          },
+          {
+            "name": "user11",
+            "address": "tellor1fe96wy8jr65mfr3q98mhjudh8u4n2crhn56ygp",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "boil trend island bridge forward hurdle what name write wrong exhibit enlist able away balance nature alarm live combine horse alone behind tuna father"
+          },
+          {
+            "name": "user12",
+            "address": "tellor1x7jp3gpazd9ktky0a349phqjkkcueguarhlnsx",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "like lady tissue prepare connect battle reflect stock soup habit remain fly bike endorse illegal essay security crazy industry tortoise dinner mirror law siren"
+          },
+          {
+            "name": "user13",
+            "address": "tellor1teqsssx502pnkwz6gqg98cnl7unl8lad8mmv96",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "live disease ugly sleep model siege runway rate vehicle trigger payment ugly subject cube win fatal dwarf ostrich argue rent cupboard liberty hen radar"
+          },
+          {
+            "name": "user14",
+            "address": "tellor16766lemxk4uhl5zm5z7jjxzxmpryv4g594as8c",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "collect shield mixture decorate miss track begin vote winner liar fresh question flame toss episode coast napkin impact tank firm gentle jewel shaft escape"
+          },
+          {
+            "name": "user15",
+            "address": "tellor1xl83n608h0p6xpnw6e8y60h0dhslve34tvunxw",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "now liberty brown taste voice sweet cigar expand announce object moral differ napkin disorder goat chest extend web dish alcohol van clever vague upset"
+          },
+          {
+            "name": "user16",
+            "address": "tellor1ynsk4dv8u270wqqfren4cvcwcnyttaqydcgdk3",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "price sample dragon inch remind hazard version pluck jelly december blouse melody bamboo wedding mixture drastic minor pudding flee exchange bounce tumble betray language"
+          },
+          {
+            "name": "user17",
+            "address": "tellor18xryxd4t4vk5xq3450tvcufkx988aszdzfq594",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "return essence picnic girl token melt oblige high portion manage awkward elephant afraid float cycle rain razor box smooth shrug hood wrap increase machine"
+          },
+          {
+            "name": "user18",
+            "address": "tellor1ulxnex2uen9qu79wg7hh4m4k30k277cyj557uq",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "try bar ladder empower divert item buzz rocket involve anger problem pottery chest similar must engine wing review marble orchard spoon wash blush viable"
+          },
+          {
+            "name": "user19",
+            "address": "tellor12qpj8ss0jwgxv9ddkv5a0j684w8ythulcljzxf",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "pink bunker ethics pride vacant wear diagram sure vital truck utility recall woman mail charge program crime urban shoe poet anchor smile walnut boring"
+          },
+          {
+            "name": "user20",
+            "address": "tellor1gwtly74rjedsandp22kpvq89n96vvz95ej7sf2",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "menu where legend dentist vacant slice athlete toy struggle girl learn kid like hill behind power input cave follow oyster door era since jungle"
+          },
+          {
+            "name": "user21",
+            "address": "tellor10hwj5fgxgauw2drm43cttu295mesrzsd0esk5q",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "quiz grape right bar loan produce brown toward mirror resist ramp mushroom empower patrol border stand mansion bubble proud focus original reward paddle spot"
+          },
+          {
+            "name": "user22",
+            "address": "tellor1vzzcz2yf5zz2vx8lm0pnr6hsm3vjgpvfyvtpsh",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "float wing tilt alone eagle hobby warrior rally solve open first relax inside birth sure train flee divide absurd blame rocket good file quote"
+          },
+          {
+            "name": "user23",
+            "address": "tellor1yxl3uf3p6fah9t905mpqgxlvvsag9e0celj3na",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "turkey pretty future act front attend mushroom awkward trophy cancel zoo found another grab route waste pyramid defense first piano now cliff glide drip"
+          },
+          {
+            "name": "user24",
+            "address": "tellor1qpxkqdmtm926xgzccte9yelj74860amd8t6p34",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "someone power dose glad shell two goose know dance night uphold advance sister common grace alter suit injury city scrap tape umbrella dress dress"
+          },
+          {
+            "name": "user25",
+            "address": "tellor1fuurd5yrmrm46zdpp2tccyqfsg40ckme5r8rqe",
+            "amount": "10000000000%DENOM%",
+            "mnemonic": "approve waste purpose bridge guess brown humor throw priority garage raven render faint bubble cricket cement inflict virus jungle pass certain parrot jump winner"
+          }
+        ]
+      }
+    }
+  ]
+}

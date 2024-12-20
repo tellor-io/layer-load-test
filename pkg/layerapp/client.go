@@ -25,7 +25,6 @@ type Params struct {
 	GasLimit uint64
 }
 
-// CosmosClientFactory creates instances of CosmosClient
 type CosmosClientFactory struct {
 	clientCtx client.Context
 	params    Params
@@ -62,7 +61,7 @@ func (f *CosmosClientFactory) NewClient(cfg loadtest.Config) (loadtest.Client, e
 
 func (c *CosmosClient) GenerateTx() ([]byte, error) {
 	txBuilder := c.clientCtx.TxConfig.NewTxBuilder()
-	userRandomIdx := rand.Perm(len(c.params.Users))[0:2]
+	userRandomIdx := rand.Perm(len(c.params.Users))
 	r1 := c.params.Users[userRandomIdx[0]]
 
 	addr1, err := r1.GetAddress()
@@ -70,7 +69,18 @@ func (c *CosmosClient) GenerateTx() ([]byte, error) {
 		return nil, fmt.Errorf("failed to get address from record 1: %w", err)
 	}
 
-	msg1 := &oracletypes.MsgSubmitValue{Creator: addr1.String(), QueryData: []byte(""), Value: randomHex()}
+	query := oracletypes.NewQueryClient(c.clientCtx)
+	qResp, err := query.CurrentCyclelistQuery(context.Background(), &oracletypes.QueryCurrentCyclelistQueryRequest{})
+	if err != nil {
+		return nil, err
+	}
+	// fmt.Println("querydata: ", qResp.QueryData)
+	qdata, err := hex.DecodeString(qResp.QueryData)
+	if err != nil {
+		return nil, err
+	}
+
+	msg1 := &oracletypes.MsgSubmitValue{Creator: addr1.String(), QueryData: qdata, Value: randomHex()}
 
 	err = txBuilder.SetMsgs(msg1)
 	if err != nil {
@@ -142,7 +152,15 @@ func (c *CosmosClient) GenerateTx() ([]byte, error) {
 	if err != nil {
 		return nil, fmt.Errorf("failed to set signature: %w", err)
 	}
-
+	// txbytes, err := c.clientCtx.TxConfig.TxEncoder()(txBuilder.GetTx())
+	// if err != nil {
+	// 	return nil, err
+	// }
+	// txres, err := c.clientCtx.Client.BroadcastTxAsync(context.Background(), txbytes)
+	// if err != nil {
+	// 	return nil, err
+	// }
+	// fmt.Println(txres.Code, txres.Hash)
 	return c.clientCtx.TxConfig.TxEncoder()(txBuilder.GetTx())
 }
 
